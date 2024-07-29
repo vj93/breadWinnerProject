@@ -1,0 +1,52 @@
+<!--
+<template>
+    <lightning-card title="Invoice Details">
+        <template if:true={data}>
+            <table class="slds-table slds-table_bordered slds-table_striped">
+                <thead>
+                    <tr>
+                        <th class="slds-text-left">Key</th>
+                        <th class="slds-text-left">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={data} for:item="item">
+                        <tr key={item.key}>
+                            <td class="slds-text-left">{item.key}</td>
+                            <td class="slds-text-left">{item.value}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        <template if:false={data}>
+            <p>No data available</p>
+        </template>
+    </lightning-card>
+</template>
+-->
+<template>
+    <lightning-card title="Invoice Details">
+        <template if:true={data}>
+            <table class="slds-table slds-table_bordered slds-table_striped">
+                <thead>
+                    <tr>
+                        <th class="slds-text-left">Key</th>
+                        <th class="slds-text-left">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={data} for:item="item">
+                        <tr key={item.key}>
+                            <td class="slds-text-left">{item.key}</td>
+                            <td class="slds-text-left">{item.value}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        <template if:false={data}>
+            <p>No data available</p>
+        </template>
+    </lightning-card>
+</template>
