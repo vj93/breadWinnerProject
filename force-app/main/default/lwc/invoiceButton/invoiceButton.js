@@ -1,5 +1,7 @@
 import { LightningElement, api } from 'lwc';
 import createInvoiceFromOpportunity from '@salesforce/apex/InvoiceServiceClass.createInvoiceFromOpportunity';
+import createInvoices from '@salesforce/apex/InvoiceServiceClass.createInvoices';
+
 import { NavigationMixin } from 'lightning/navigation';
 
 export default class InvoiceButton extends NavigationMixin(LightningElement) {
@@ -21,4 +23,31 @@ export default class InvoiceButton extends NavigationMixin(LightningElement) {
         // Navigate to the URL
         window.open(communityUrl, '_blank');
     }
+
+    createInvoice() {
+        createInvoiceFromOpportunity({ opportunityId: this.recordId })
+            .then(result => {
+                
+                createInvoices({ jsonData: result })
+                    .then(result => {
+                        this[NavigationMixin.Navigate]({
+                            type: 'standard__recordPage',
+                            attributes: {
+                                recordId: result,
+                                objectApiName: 'Invoice', 
+                                actionName: 'view'
+                            }
+                        });
+                        
+                    })
+            .       catch(error => {
+                        console.error('Error:', error);
+                     });
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+   
 }
